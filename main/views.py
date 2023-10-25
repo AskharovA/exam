@@ -6,6 +6,7 @@ from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from pytils.translit import slugify
 from taggit.models import Tag
+from unidecode import unidecode
 
 
 def post_list(request, category_slug=None, tag_slug=None):
@@ -82,6 +83,7 @@ def add_post(request):
             post.author = request.user
             post.slug = slugify(post.title)
             post.save()
+            form.save_m2m()
             return redirect(post.get_absolute_url())
     else:
         form = PostForm()
@@ -90,3 +92,26 @@ def add_post(request):
                   {
                       'form': form
                   })
+
+
+def update_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect(post.get_absolute_url())
+    else:
+        form = PostForm(instance=post)
+    return render(request,
+                  'main/update_post.html',
+                  {
+                      'form': form,
+                      'post': post,
+                  })
+
+
+def delete_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    post.delete()
+    return redirect(reverse('main:post_list'))

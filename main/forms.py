@@ -1,6 +1,7 @@
 from django.forms import ModelForm, CharField, TextInput
 from django_summernote.widgets import SummernoteWidget
 from .models import Comment, Post
+from taggit.forms import TagField, TagWidget
 
 
 class CommentForm(ModelForm):
@@ -27,7 +28,7 @@ class PostForm(ModelForm):
             'height': '500px',
         }
     }))
-    tags = CharField(required=False, widget=TextInput(attrs={
+    tags = TagField(required=False, widget=TagWidget(attrs={
         'class': 'form_input',
     }))
 

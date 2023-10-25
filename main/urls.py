@@ -5,6 +5,8 @@ app_name = 'main'
 
 urlpatterns = [
     path('add_post/', views.add_post, name='add_post'),
+    path('update_post/<int:post_id>', views.update_post, name='update_post'),
+    path('delete_post/<int:post_id>', views.delete_post, name='delete_post'),
     path('api_page/', views.api_page, name='api_page'),
     path('about/', views.about, name='about'),
     path('<slug:category_slug>/', views.post_list, name='select_category'),
