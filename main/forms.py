@@ -1,7 +1,7 @@
 from django.forms import ModelForm, CharField, TextInput
 from django_summernote.widgets import SummernoteWidget
 from .models import Comment, Post
-from taggit.forms import TagWidget, TagField
+from taggit.forms import TagField, TagWidget
 
 
 class CommentForm(ModelForm):
