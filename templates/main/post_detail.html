@@ -37,7 +37,7 @@
         {% for comment in comments %}
             <div class="comment">
                 <div class="comment_profile_avatar">
-                    <img src="{{ user.profile.avatar.url }}" width="75px">
+                    <img src="{{ comment.author.profile.avatar.url }}" width="75px">
                 </div>
                 <div class="comment_text">
                     <h6>
