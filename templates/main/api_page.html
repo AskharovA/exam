@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	API
+{% endblock %}
+
+{% block content %}
+	<div class="api_block">
+        <h6>Получить все публикации или создать публикацию</h6>
+        <p class="link">
+            /api/v1/post_list
+        </p>
+        <h6>Получить, Обновить, Удалить публикацию</h6>
+        <p class="link">
+            /api/v1/post_detail/id
+        </p>
+        <h6>
+            Авторизация по JWT
+        </h6>
+        <p class="link">
+            api/v1/token/
+        </p>
+        <p class="link">
+            api/v1/refresh/
+        </p>
+        <p class="link">
+            api/v1/verify/
+        </p>
+    </div>
+{% endblock %}

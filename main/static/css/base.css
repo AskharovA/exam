@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F0F0F0;
+}
+
+.top {
+    background-color: #303B44;
+    color: white;
+    padding: 10px 0;
+}
+
+.top>h2 {
+    margin-bottom: 0;
+}
+
+header {
+    text-align: center;
+}
+
+.navbar {
+    padding: 10px 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.footer {
+    background-color: #303B44;
+    color: white;
+    text-align: center;
+}
+
+.footer_text {
+    padding: 75px 0;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+
+main {
+    max-width: 850px;
+    padding: 10px;
+    margin: auto;
+}
+
+.categories {
+    display: flex;
+    justify-content: left;
+    gap: 25px;
+    padding: 15px;
+    background-color: white;
+    font-weight: bold;
+}
+
+.categories a {
+    color: #303B44;
+}
+
+.categories a:hover {
+    color: cornflowerblue;
+}
+
+.post {
+    padding: 20px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.active_category {
+    border-bottom: 2px solid #303B44;
+}
+
+.tag_item {
+    display: inline;
+}
+
+.btn {
+    padding: 7px 10px;
+    border: 1px solid #303B44;
+    border-radius: 2px;
+    transition: .4s all ease;
+    margin-bottom: 20px;
+}
+
+.btn:hover {
+    background-color: #303B44;
+    color: white;
+}
+
+.user_block {
+    display: flex;
+    justify-content: right;
+    gap: 20px;
+    background-color: white;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.comments {
+    background-color: white;
+    padding: 20px;
+}
+
+.comment {
+    margin-top: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: left;
+    gap: 25px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 15px 20px;
+}
+
+.empty_page {
+    color: gray;
+}
+
+.about_block {
+    background-color: white;
+    padding: 20px;
+}
+
+.login_block, .api_block, .add_post_block {
+    padding: 25px;
+    background-color: white;
+}
+
+.form_input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+p.link {
+    background-color: lightgray;
+    padding: 10px;
+}
+
+.profile_block {
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: left;
+    gap: 50px;
+}
+
+.profile_avatar {
+    display: block;
+    width: 250px;
+}
+
+.tag_text {
+    color: forestgreen;
+}

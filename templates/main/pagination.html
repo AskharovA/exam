@@ -1,0 +1,27 @@
+<div class="pagination">
+    {% if page.has_previous %}
+        <div class="page_step">
+            <a href="?page={{ page.previous_page_number }}">
+                Сюда
+            </a>
+        </div>
+        {% else %}
+        <div class="page_step empty_page">
+            Сюда
+        </div>
+    {% endif %}
+    <div class="current_page">
+        {{ page.number }} из {{ page.paginator.num_pages }}
+    </div>
+    {% if page.has_next %}
+        <div class="page_step">
+            <a href="?page={{ page.next_page_number }}">
+                Туда
+            </a>
+        </div>
+        {% else %}
+        <div class="page_step empty_page">
+            Туда
+        </div>
+    {% endif %}
+</div>

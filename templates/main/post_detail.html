@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="post">
+        <h4>{{ post.title }}</h4>
+        <h6>
+            {{ post.created|date:"d" }}.{{ post.created|date:"m" }}.{{ post.created|date:"Y" }}
+            {{ post.created|date:"H" }}:{{ post.created|date:"i" }} |
+            {{ post.author.username }}
+        </h6>
+        <p>{{ post.body|safe }}</p>
+        <div class="tags">
+            <b>Теги:</b>
+            {% for tag in post.tags.all %}
+                <a href="#" class="tag_item">{{ tag.name }}</a>
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="comments">
+        {% if request.user.is_authenticated %}
+            <h5>Оставить комментарий</h5>
+            <form action="{% url 'main:add_comment' post.id %}" class="comment_form" method="post">
+            {% csrf_token %}
+            <p>{{ comment_form.body.errors }}</p>
+            {{ comment_form.body }}
+                <input type="submit" value="Отправить" class="btn">
+            </form>
+            <h5>Комментарии</h5>
+        {% else %}
+            <h6>Авторизуйтесь, чтобы оставить комментарий.</h6>
+        {% endif %}
+        {% for comment in comments %}
+            <div class="comment">
+                <div class="comment_profile_avatar">
+                    <img src="{{ user.profile.avatar.url }}" width="75px">
+                </div>
+                <div class="comment_text">
+                    <h6>
+                        {{ comment.author.username }} |
+                        <small>
+                            {{ post.created|date:"d" }}.{{ post.created|date:"m" }}.{{ post.created|date:"Y" }}
+                            {{ post.created|date:"H" }}:{{ post.created|date:"i" }}
+                        </small>
+                    </h6>
+                    {{ comment.body|safe }}
+                </div>
+            </div>
+        {% empty %}
+            <h6>Пока никто не оставил комментарий.</h6>
+        {% endfor %}
+    </div>
+{% endblock %}

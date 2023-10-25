@@ -1,0 +1,52 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <div class="top">
+            <h2>IT STEP</h2>
+        </div>
+        <div class="navbar">
+            <a href="{% url 'main:post_list' %}">Главная страница</a>
+            <a href="{% url 'main:about' %}">О проекте</a>
+            <a href="{% url 'main:api_page' %}">API</a>
+            <a href="#">Исходный код</a>
+        </div>
+    </header>
+    <main>
+        {% if request.user.is_authenticated %}
+            <div class="user_block">
+                <a href="#"><b>{{ request.user.username }}</b></a>
+                <a href="{% url 'account:profile' %}">Профиль</a>
+                <a href="{% url 'main:add_post' %}">Добавить публикацию</a>
+                <a href="{% url 'account:logout' %}">Выйти</a>
+            </div>
+        {% else %}
+            <div class="user_block">
+                <a href="{% url 'account:login' %}">Войти</a>
+                <a href="{% url 'account:register' %}">Регистрация</a>
+            </div>
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="footer">
+            <p class="footer_text">
+                Практическая часть экзамена по Django 4
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

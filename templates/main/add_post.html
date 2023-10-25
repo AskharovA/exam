@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Добавить публикацию
+{% endblock %}
+
+{% block content %}
+    <div class="add_post_block">
+    	<h4>Добавление публикаций</h4>
+        <hr>
+        <form action="{% url 'main:add_post' %}" method="post">
+            {% csrf_token %}
+            <h6>Титул</h6>
+            {{ form.title }}
+            <h6>Текст публикации</h6>
+            {{ form.body }}
+            <h6>Выберите категорию</h6>
+            {{ form.category }}
+            <h6>Напишите теги через запятую</h6>
+            {{ form.tags }}
+            <input type="submit" value="Отправить" class="btn">
+        </form>
+    </div>
+{% endblock %}

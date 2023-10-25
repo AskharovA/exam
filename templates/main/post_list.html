@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ selected_category.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="categories">
+    {% for category in categories %}
+        <a href="{{ category.get_absolute_url }}" class="{% if selected_category == category %}
+        active_category{% endif %}">{{ category.name }}</a>
+    {% endfor %}
+    {% if tag %}
+        <span class="tag_text">Публикации с тегом "{{ tag.name }}"</span>
+    {% endif %}
+    </div>
+	{% for post in posts %}
+        <div class="post">
+        <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+        <h6>
+            {{ post.created|date:"d" }}.{{ post.created|date:"m" }}.{{ post.created|date:"Y" }}
+            {{ post.created|date:"H" }}:{{ post.created|date:"i" }} |
+            {{ post.author.username }}
+        </h6>
+        {% if post.category.name == 'Посты' %}
+        <p>{{ post.body|safe }}</p>
+        {% else %}
+        <p>{{ post.body|safe|truncatewords_html:20 }}</p>
+            <a href="{{ post.get_absolute_url }}"><button class="btn">Читать далее</button></a>
+        {% endif %}
+        <div class="tags">
+        <b>Теги:</b>
+        {% for tag in post.tags.all %}
+            <a href="{% url 'main:posts_by_tag' tag.slug %}" class="tag_item">{{ tag.name }}</a>
+            {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        </div>
+        <p><img src="https://www.svgrepo.com/show/520651/comment-alt-lines.svg" width="25"> {{ post.comments.all.count }}</p>
+        </div>
+    {% endfor %}
+    {% include 'main/pagination.html' with page=posts %}
+{% endblock %}

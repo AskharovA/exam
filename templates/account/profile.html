@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Профиль
+{% endblock %}
+
+{% block content %}
+    <div class="profile_block">
+        <img src="{{ request.user.profile.avatar.url }}" class="profile_avatar">
+        <div class="info">
+            <p><b>Логин:</b> {{ request.user.username }}</p>
+            <p><b>Имя:</b> {{ request.user.profile.first_name }} {{ request.user.profile.last_name }}</p>
+            <p><b>Email:</b> {{ request.user.profile.email }}</p>
+            <a href="{% url 'account:profile_edit' %}"><button class="btn">Изменить профиль</button></a>
+        </div>
+    </div>
+{% endblock %}
