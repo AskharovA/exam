@@ -82,6 +82,7 @@ def add_post(request):
             post.author = request.user
             post.slug = slugify(post.title)
             post.save()
+            form.save_m2m()
             return redirect(post.get_absolute_url())
     else:
         form = PostForm()

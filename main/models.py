@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from taggit.managers import TaggableManager
+from taggit.models import TagBase, GenericUUIDTaggedItemBase
+from pytils.translit import slugify
+from unidecode import unidecode
 
 
 class Category(models.Model):
