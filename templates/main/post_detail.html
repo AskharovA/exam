@@ -52,8 +52,8 @@
                     <h6>
                         {{ comment.author.username }} |
                         <small>
-                            {{ post.created|date:"d" }}.{{ post.created|date:"m" }}.{{ post.created|date:"Y" }}
-                            {{ post.created|date:"H" }}:{{ post.created|date:"i" }}
+                            {{ comment.created|date:"d" }}.{{ comment.created|date:"m" }}.{{ comment.created|date:"Y" }}
+                            {{ comment.created|date:"H" }}:{{ comment.created|date:"i" }}
                         </small>
                     </h6>
                     {{ comment.body|safe }}
